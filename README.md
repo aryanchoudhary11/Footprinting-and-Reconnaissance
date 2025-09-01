@@ -317,3 +317,81 @@ This means gathering business-related intelligence for hacking or analysis.
 
 ---
 
+## 👥 Footprinting through Social Networking Sites
+
+Social media is one of the **richest sources of information** for hackers. Employees often **overshare** details about their company, technologies, or even internal systems without realizing attackers can use it.
+
+### 1. People Search on Social Networking Sites
+
+Attackers look up **employees, partners, or executives** on platforms like Facebook, Twitter, Instagram, LinkedIn, etc.
+
+- Info gained:
+  - Full name, job role, email ID pattern
+  - Location, work culture, office pictures
+  - Friends/colleagues (who can be social engineered)
+
+👉 Example: Searching ```site:linkedin.com "Company ABC"``` on Google shows all employees working at ABC.
+
+### 2. Gathering Information from LinkedIn
+
+- LinkedIn is a goldmine for hackers because employees post:
+
+  - Current role and responsibilities
+  - Technologies they work with (“5 years of AWS, Docker, Kubernetes”)
+  - Job switches (helps track who has insider knowledge)
+
+👉 **Case Example:**
+A sysadmin writes *“managing Fortinet firewalls and Splunk SIEM”*.
+➡️ Now an attacker knows the company uses Fortinet + Splunk.
+
+### 3. Harvesting Email Lists
+
+- Attackers gather employee emails to use in **phishing or brute force attacks.**
+- Common ways:
+    - Guessing format: (```firstname.lastname@company.com```)
+    - Scraping from LinkedIn, GitHub, or public documents.
+    - Using tools like **theHarvester** or **Hunter.io**.
+
+👉 **Example:** If one email is ```john.doe@abc.com```, then others likely follow the same pattern.
+
+### 4. Harvesting Email Lists with AI
+
+AI can:
+- Predict email patterns (e.g., first.last, first_initial+last).
+- Cross-verify emails with data leaks.
+- Generate phishing targets list quickly.
+
+👉 **Example:** AI scrapes 100 LinkedIn profiles from abc.com, detects the email format, and auto-builds a valid email list for spear phishing.
+
+### 5. Analyzing Target Social Media Presence
+
+Hackers analyze:
+
+- Posting habits (when employees are active).
+- Company events (conferences, new launches).
+- Pictures/videos (sometimes show ID cards, desktops, whiteboards with passwords).
+- Hashtags (#LifeAtABC, #TeamABC → reveals projects/office info).
+
+👉 **Example:** An employee posts a picture of their workstation on Instagram → monitor shows internal dashboard URL.
+
+### 6. Tools for Footprinting through Social Networking Sites
+
+- **theHarvester** – Email/username gathering.
+- **Maltego** – OSINT framework with social media integration.
+- **Social-Searcher** – Monitors mentions across social media.
+- **Creepy** – Finds geolocation info from Twitter/Flickr.
+- **Sherlock** – Finds usernames across multiple platforms.
+
+👉 **Example:** Using Sherlock, you find that a sysadmin’s username techguy21 is reused on GitHub → where he posted company code.
+
+### 7. Footprinting through Social Networking Sites with AI
+
+AI-powered footprinting helps by:
+- Automating profile crawling.
+- Extracting emails, job roles, and technologies from LinkedIn at scale.
+- Detecting **patterns of behavior** (e.g., when employees log in or post).
+- Analyzing images for hidden data (like EXIF metadata → location info).
+
+👉 Example: AI scans employee selfies → metadata reveals GPS coordinates of the office → attacker now knows exact building location.
+
+--- 
