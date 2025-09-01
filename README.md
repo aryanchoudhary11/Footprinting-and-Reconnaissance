@@ -208,3 +208,112 @@ Shodan.io
 👉 **Example:** Searching on Censys may reveal SSL certificates of a target company, helping enumerate subdomains.
 
 ---
+
+## 🌍 Footprinting through Internet Research Services
+
+Internet research services are publicly available online resources that attackers or ethical hackers use to gather deeper information about a target beyond search engines. This is part of OSINT (Open Source Intelligence).
+
+### 1. Finding a Company’s Top-Level Domains (TLDs) and Sub-domains
+
+- **TLDs** = extensions like .com, .org, .net, .in.
+- Companies often own multiple TLDs (e.g., google.com, google.in, google.org).
+- **Subdomains** = subdivisions of the main domain (e.g., mail.google.com, dev.google.com).
+
+How hackers find them:
+
+- Tools: sublist3r, Amass, crt.sh, dnsdumpster.com.
+- Passive way: Check SSL certificates → they often list subdomains.
+
+👉 **Example:** A company has portal.abc.com for internal logins, which might be overlooked by admins but indexed online.
+
+### 2. Finding TLDs and Sub-domains with AI
+
+AI can:
+
+- Automate subdomain enumeration with multiple tools (Sublist3r + Amass + crt.sh).
+- Cross-check which subdomains are live.
+- Match them with vulnerabilities in CVE databases.
+
+👉 **Example**: AI finds vpn.abc.net and correlates it with an outdated version → potential entry point.
+
+### 3. Extracting Website Information from Archive.org
+
+- Archive.org (Wayback Machine) stores historical snapshots of websites.
+
+- Hackers use it to find:
+
+  - Old pages containing sensitive info.
+  - Deprecated APIs/endpoints.
+  - Exposed employee details (before they were removed).
+
+👉 **Example:** abc.com may have hidden admin pages today, but in 2016 snapshots you find /admin/login.php.
+
+### 4. Footprinting through People Search Services
+
+- Websites like Pipl, Spokeo, PeekYou, BeenVerified provide personal data.
+- Attackers can collect: phone numbers, emails, social media profiles, addresses.
+- Used for social engineering attacks (phishing, impersonation).
+
+👉 Example: Searching for an employee’s name reveals LinkedIn + GitHub → attacker learns about technologies the company uses.
+
+### 5. Footprinting through Job Sites
+
+- Job postings often leak internal details:
+  - Technologies used (e.g., “looking for AWS & Kubernetes admin”).
+  - Security tools (“must have Splunk experience”).
+  - Infrastructure scale.
+
+👉 **Example:** If abc.com posts a job for “Oracle DBA with SQL*Plus experience,” an attacker knows Oracle DB is in use.
+
+### 6. Dark Web Footprinting
+
+The **Dark Web** is used by attackers to buy/sell data.
+- Hackers search for leaked credentials, company documents, or data dumps.
+- Tools: Tor Browser, marketplaces, breach databases.
+
+👉 **Example:** An attacker finds abc.com employee emails + passwords leaked from a previous breach.
+
+### 7. Searching the Dark Web with Advanced Search Parameters
+
+- Dark Web search engines (e.g., Ahmia, Onion Search Engine) allow specific queries.
+- Example parameters:
+    - ```company.com password```
+    - ```company.com confidential```
+
+👉 **Case:** A security researcher found banking credentials of employees from a past leak indexed on a hidden forum.
+
+### 8. Determining the Operating System
+
+Footprinting can also reveal a company’s OS:
+  - Job postings (“Linux Admin required”).
+  - Shodan scan showing Windows RDP ports open.
+  - Banner grabbing from services.
+
+👉 **Example:** If Nmap shows ```Microsoft-IIS/10.0```, attacker knows the server is **Windows Server 2016+.**
+
+### 9. Competitive Intelligence Gathering
+
+This means gathering business-related intelligence for hacking or analysis.
+
+- **When Did the Company Begin? How Did it Develop?**
+  → From Crunchbase, Wikipedia, company blogs.
+
+- **What Are the Company's Plans?**
+  → From press releases, news articles, job postings.
+
+- **What Do Experts Say?**
+  → From forums, tech blogs, analyst reports.
+
+👉 **Example:** If a company announces it is “migrating to AWS Cloud,” attackers may target misconfigured S3 buckets.
+
+## 10. Other Techniques for Footprinting through Internet Research Services
+
+- Social bookmarking sites (Reddit, Quora, GitHub).
+- Pastebin leaks (searching ```site:pastebin.com company.com```).
+- SSL certificate transparency logs (crt.sh).
+- Tech blogs where employees write about their work.
+
+👉 **Example:** A developer posts a code snippet on GitHub that contains API keys.
+
+---
+
