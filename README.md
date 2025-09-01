@@ -395,3 +395,72 @@ AI-powered footprinting helps by:
 👉 Example: AI scans employee selfies → metadata reveals GPS coordinates of the office → attacker now knows exact building location.
 
 --- 
+
+## 🌍 Whois Footprinting
+
+Whois is one of the oldest and most useful methods for footprinting. It provides domain registration details stored in public records when someone buys a domain. Attackers (and ethical hackers) use it to find who owns a website, their contact details, and server information.
+
+### 1. Whois Lookup
+
+What it is:
+
+- Whois lookup shows **domain registration info** from registrars like GoDaddy, Namecheap, etc.
+- Data can include:
+
+    - Registrant’s name/organization
+    - Email address & phone number
+    - Domain creation & expiry date
+    - Nameservers (DNS servers)
+    - Registrar details
+ 
+**How hackers use it:**
+- If the registrant uses **personal email**, attackers may try phishing.
+- If the expiry date is near, attackers may try domain hijacking (re-registering it if it lapses).
+- Nameservers reveal hosting provider (AWS, Cloudflare, etc.).
+
+**Tools for Whois lookup:**
+- Online tools: whois.domaintools.com, whois.com
+- CLI:
+
+  ```
+  whois example.com
+  ```
+
+👉 **Example:**
+
+- Looking up abc.com might reveal:
+- Registrant: ABC Technologies Pvt Ltd
+- Email: admin@abc.com
+- Nameservers: ns1.aws.amazon.com, ns2.aws.amazon.com
+
+➡️ Now you know the company uses AWS hosting.
+
+### 2. Finding IP Geolocation Information
+
+After Whois, hackers map **where the IP address is located physically.**
+
+**What it reveals:**
+
+- Country, city, ISP (Internet Service Provider).
+- Hosting provider (AWS, Azure, Google Cloud, etc.).
+- Sometimes even **exact data center region.**
+
+**Why it matters:**
+
+- Helps attackers know whether a site is hosted **on-premises or cloud.**
+- Useful for **social engineering** (e.g., pretending to be local ISP support).
+- Helps choose **attack timing** (timezone differences).
+
+**Tools for IP Geolocation:**
+
+- iplocation.net
+- ipinfo.io
+- Shodan.io (also provides geolocation + open ports).
+- CLI (Linux):
+
+  ```
+  curl ipinfo.io/8.8.8.8
+  ```
+👉 **Example:** If IP 192.168.61.129 resolves to Bangalore, India → ISP: Reliance Jio, attackers know where the server is hosted.
+
+---
