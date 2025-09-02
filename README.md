@@ -658,3 +658,50 @@ Received: from mail.example.com (mail.example.com [203.0.113.25])
 
 ---
 
+## 🎭 Footprinting through Social Engineering
+
+Social Engineering is the **art of manipulating people** into giving up confidential information rather than breaking systems technically.
+It’s one of the **most effective footprinting techniques** because humans are the weakest security link.
+
+### 1. Collecting Information through Social Engineering on Social Networking Sites
+
+- Attackers exploit trust and oversharing on platforms like Facebook, Instagram, LinkedIn, or Twitter (X).
+- People often reveal:
+
+  - Birthdays, phone numbers, and emails
+  - Workplace and job role details
+  - Travel plans and geolocation tags
+  - Family connections and personal interests
+
+📌 Techniques:
+
+- **Fake Profiles (Impersonation)**: Attacker creates a fake persona to connect with employees.
+- **Phishing via Social Media:** Sending malicious links through DMs.
+- **Information Harvesting:** Collecting info from public profiles, group memberships, or likes.
+
+⚡ **Example:** An attacker connects with an employee on LinkedIn, poses as a recruiter, and extracts internal project details by casual chatting.
+
+### 2. Collecting Information Using Eavesdropping, Shoulder Surfing, Dumpster Diving, and Impersonation
+
+**🔍 Eavesdropping**
+
+- Secretly listening to conversations in public (cafes, airports, offices).
+- Attackers may **overhear credentials, project names, or phone calls**.
+
+**👀 Shoulder Surfing**
+
+- Looking over someone’s shoulder to **steal sensitive info**.
+- **Example:** Watching someone type an ATM PIN, office password, or email login.
+
+**🗑 Dumpster Diving**
+
+- Searching through trash bins to retrieve **confidential papers, notes, invoices, or USB drives**.
+- **Example:** An attacker finds discarded documents with network details.
+
+**🎭 Impersonation**
+
+- Pretending to be a **trusted individual** (IT staff, delivery person, or manager).
+- **Example:** An attacker impersonates tech support, asks for Wi-Fi credentials under the pretense of fixing internet issues.
+
+--- 
+
