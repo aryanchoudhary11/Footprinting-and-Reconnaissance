@@ -547,3 +547,114 @@ IP ```203.0.113.10``` may resolve to:
 ➡️ Now attacker knows additional subdomains like ```dev.abc.com``` which might be less secure.
 
 ---
+
+## 🌐 Network and Email Footprinting
+
+This step focuses on mapping **how data flows across the internet** (network-level reconnaissance) and learning how to extract information from **email communications.**
+
+### 1. 🔎 Locate the Network Range
+
+When targeting an organization, the attacker first needs to know **which IP range** (block of IP addresses) belongs to the target.
+
+- Every organization has IP ranges assigned by Regional Internet Registries (RIRs) like ARIN, RIPE, APNIC.
+- Using tools like ```whois```, attackers can find the **NetRange**.
+
+**Example:**
+```
+whois microsoft.com
+```
+Might show:
+```
+NetRange:   13.64.0.0 - 13.107.255.255
+OrgName:    Microsoft Corporation
+```
+
+👉 This means Microsoft owns 13.64.0.0 → 13.107.255.255.
+An attacker now knows all live hosts will lie in this range.
+
+**✅ Real-world use**: Security teams monitor their entire IP range for vulnerabilities, not just their main domain.
+
+### 2. 🌍 Traceroute
+
+Traceroute maps the path packets take from your computer to the target server.
+
+- Shows **routers (hops) in between**.
+- Reveals the **network infrastructure** (ISPs, routers, firewalls).
+- Helps identify **where the target’s network begins**.
+
+**Example:**
+```
+traceroute google.com    # Linux / Mac
+tracert google.com       # Windows
+```
+
+You might see output like:
+
+```
+1  192.168.1.1 (home router)
+2  isp.local.net
+3  72.14.219.1 (Google edge router)
+...
+```
+
+👉 From this, you know where the **internal Google network starts**.
+
+### 3. 🤖 Traceroute with AI
+
+Attackers (and defenders) can use AI models to analyze traceroute outputs and identify:
+
+- Which hops belong to ISPs vs the target
+- Possible VPNs, proxies, or CDN usage (like Cloudflare)
+- Detect geographical routes → AI can map hops on a world map.
+
+✅ **Example:** AI sees ```ae1.paris.gblx.net``` and automatically says “Hop passes through Paris, Global Crossing ISP”.
+
+### 4. 📊 Traceroute Analysis
+
+Key insights attackers/security analysts get:
+
+- Where firewalls filter packets (e.g., sudden timeout at hop 6).
+- Which ISPs partner with the target company.
+- Latency points (helps in DoS attack planning).
+- Detect load balancers/CDNs if multiple routes appear.
+
+### 5. ⚙️ Traceroute Tools
+
+- **Built-in**: ```tracert``` (Windows), ```traceroute``` (Linux/Mac).
+- **VisualRoute** → GUI + Geo-mapping.
+- **Path Analyzer Pro** → Advanced traceroute with reporting.
+- **tracetcp** → Traceroute over TCP (can bypass ICMP block).
+
+### 6. 📧 Tracking Email Communications
+
+Email headers leak tons of information.
+Attackers can trace:
+
+- The **originating IP** of the sender.
+- The **mail servers** used.
+- Possible **geolocation**.
+
+### 7. 📜 Collecting Information from Email Header
+
+Let’s say you received this header:
+
+```
+Received: from mail.example.com (mail.example.com [203.0.113.25])
+  by smtp.gmail.com with ESMTPS id x12si87332qtk.23.2025.08.31
+```
+
+- **203.0.113.25** = Mail server IP.
+- Running ```whois 203.0.113.25``` shows the organization hosting it.
+- Sometimes, the **sender’s real IP** leaks (if no anonymization).
+
+**✅ Defenders:** Configure mail servers to remove sensitive info.
+
+### 8. 🛠️ Email Tracking Tools
+
+- **MXToolBox (mxtoolbox.com)** → Analyze mail headers, MX records.
+- **PoliteMail / Yesware** → Track if mail is opened (legit marketing tools, abused by attackers).
+- **Infoga** → OSINT tool for email footprinting.
+- **Email Header Analyzer (Google Apps)** → Decodes headers into readable info.
+
+---
+
