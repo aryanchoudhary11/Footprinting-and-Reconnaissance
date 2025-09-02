@@ -464,3 +464,86 @@ After Whois, hackers map **where the IP address is located physically.**
 👉 **Example:** If IP 192.168.61.129 resolves to Bangalore, India → ISP: Reliance Jio, attackers know where the server is hosted.
 
 ---
+
+## 🌐 DNS Footprinting
+
+DNS (Domain Name System) is like the internet’s directory – it maps **domain names** (example.com) to **IP addresses**.
+Footprinting DNS gives attackers technical insights into a company’s network.
+
+### 1. Extracting DNS Information
+
+Attackers gather DNS records to understand a target’s infrastructure.
+
+**Important DNS Records:**
+
+- **A Record** → Maps a domain to an IPv4 address.
+  - ```abc.com → 203.0.113.10```
+
+- **AAAA Record** → Maps to IPv6 address.
+- **MX Record** → Mail server info.
+  - If ```mail.abc.com``` points to Google → company uses Gmail/Google Workspace.
+
+- **NS Record** → Nameservers (who handles DNS).
+- **TXT Record** → Can reveal SPF/DKIM for email, sometimes API keys or misconfigurations.
+- **CNAME Record** → Alias for subdomains.
+
+**Tools to extract DNS info:**
+
+- nslookup (Windows/Linux)
+  ```
+  nslookup abc.com
+  ```
+
+- dig (Linux/macOS)
+  ```
+  dig abc.com ANY
+  ```
+
+- Online: ```dnsdumpster.com```, ```MXToolBox```.
+
+👉 Example:
+Running dig abc.com MX might show →
+```
+mail.abc.com priority 10
+```
+➡️ Now attacker knows company’s mail server.
+
+### 2. DNS Lookup with AI
+
+AI can **automate DNS lookups** by:
+
+- Querying multiple record types in one go.
+- Identifying patterns (like naming conventions for subdomains).
+- Correlating DNS info with known vulnerabilities.
+
+👉 Example: AI checks ```vpn.abc.com``` → detects it points to ```Cisco ASA VPN``` → matches with a CVE like **CVE-2020-3452.**
+
+Instead of manually testing every subdomain, AI automates scanning + vulnerability mapping.
+
+### 3. Reverse DNS Lookup
+
+**Forward DNS** → Domain → IP
+**Reverse DNS** → IP → Domain
+
+- Reverse DNS finds **all domains hosted on a specific IP.**
+- Useful when one server hosts multiple websites (shared hosting).
+- Can reveal **hidden/test domains** not publicly known.
+
+**Tools:**
+- Command line:
+  ```
+  nslookup 203.0.113.10
+  ```
+
+- Online: viewdns.info/reverseip
+
+👉 **Example:**
+IP ```203.0.113.10``` may resolve to:
+
+- abc.com
+- test.abc.com
+- dev.abc.com
+
+➡️ Now attacker knows additional subdomains like ```dev.abc.com``` which might be less secure.
+
+---
